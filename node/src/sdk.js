@@ -313,6 +313,7 @@ module.exports = {
   createSchema,
   deleteSchema,
   updateSchema,
+
   // objects api
   getAllObjects,
   getObject,

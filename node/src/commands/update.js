@@ -68,7 +68,7 @@ exports.builder = (yargs) => {
       'Update schema array properties, comma separated values',
     ],
     [
-      "$0 update object *id* --schemaId=*schemaId* --property1=new_property_value",
+      '$0 update object *id* --schemaId=*schemaId* --property1=new_property_value',
       'Update object instance',
     ],
   ]);
