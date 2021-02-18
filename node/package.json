@@ -1,11 +1,11 @@
 {
-  "name": "hubspot-crm-objects",
+  "name": "hubspot-crm-custom-object",
   "version": "1.0.0",
   "engines": {
     "node": ">= 10.13.0"
   },
   "description": "hubspot-node client sample applications",
-  "main": "src/index.js",
+  "main": "bin/cli.js",
   "scripts": {
     "prettier:write": "prettier --write './**/*.{js,json}'"
   },
