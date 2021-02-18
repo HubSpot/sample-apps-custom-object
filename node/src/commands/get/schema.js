@@ -4,7 +4,7 @@ const { logger } = require('../../helpers/logger');
 
 const { getSchema, getAllSchemas } = require('../../sdk');
 
-exports.command = 'schema [schemaId]';
+exports.command = ['schema [schemaId]', 'schemas [schemaId]'];
 exports.describe = 'Get CRM schema';
 
 exports.handler = async (options) => {
