@@ -1,4 +1,4 @@
-# HubSpot-nodejs CRM-objects sample app
+# HubSpot-nodejs custom object sample app
 
 ### Requirements
 
@@ -30,36 +30,36 @@ Show all commands
 ```bash
 ./bin/cli.js --help
 ```
-Get list of objects
+Get list of available schemas or object instances of the schema
 
 ```bash
-./bin/cli.js get [objectType] -a --query='test'
+./bin/cli.js get <schema|object> [schemaId] -a --query='test'
 ```
 
-Creare new object
+Create a new schema or object instance
 
 ```bash
-./bin/cli.js create [objectType]
+./bin/cli.js create <schema|object> [schemaId]
 ```
 
-Please also notice that some objects require mandatory properties, that you can provide in the following way:
+Please also notice when you create object instance, some of them require mandatory properties, that you can provide in the following way:
 ```bash
-./bin/cli.js create [objectType] --email='test@test.com' --name='Test name'
+./bin/cli.js create object [schemaId] --email='test@test.com' --name='Test name'
 ```
 
-Update existing object
+Update existing schema or object instance
 
 ```bash
-./bin/cli.js udpate [objectType] [objectId] --name='Test name'
+./bin/cli.js udpate <schema|object> [schemaId] [objectId] --property1='New property value'
 ```
 
-Archive existing object
+Delete existing schema or object instance
 
 ```bash
-./bin/cli.js delete [objectType] [objectId]
+./bin/cli.js delete <schema|object> [schemaId] [objectId]
 ```
 
-Get list of available properties for an object
+Get list of available properties for a schema
 ```bash
-./bin/cli.js properties [objectType]
+./bin/cli.js properties [schemaId]
 ```

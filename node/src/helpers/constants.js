@@ -1,8 +1,3 @@
-const AVAILABLE_TYPES = {
-  schema: 'schema',
-  object: 'object',
-};
-
 const AVAILABLE_SCHEMA_TYPES = {
   enumeration: 'enumeration',
   date: 'date',
@@ -31,7 +26,6 @@ const STRING_WITH_NO_SPACES_REGEX = /^\S*$/;
 
 module.exports = {
   AVAILABLE_SCHEMA_TYPES,
-  AVAILABLE_TYPES,
   AVAILABLE_SCHEMA_FIELD_TYPES,
   API_KEY_REGEX,
   STRING_WITH_NO_SPACES_REGEX,

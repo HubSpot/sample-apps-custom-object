@@ -1,10 +1,11 @@
-# HubSpot CRM Objects sample app
+# HubSpot Custom Object sample app
 
-This is a sample app for the HubSpot [client libraries](https://developers.hubspot.com/docs/api/overview). This sample app demonstrates how to make CRUD API calls to different CRM Objects Endpoints.
+This is a sample app for the HubSpot [client libraries](https://developers.hubspot.com/docs/api/overview). This sample app demonstrates how to make CRUD API calls to CRM custom objects [API](https://developers.hubspot.com/docs/api/crm/crm-custom-objects).
 
 ## Reference
 
 - [CRM Objects API ](https://developers.hubspot.com/docs/api/crm/understanding-the-crm)
+- [CRM Custom objects API ](https://developers.hubspot.com/docs/api/crm/crm-custom-objects)
 
 ## How to run locally
 
