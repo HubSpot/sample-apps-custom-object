@@ -1,9 +1,12 @@
 const { checkConfig } = require('../../config');
 const { logger } = require('../../helpers/logger');
 
-const { getAllObjects, getObject } = require('../../sdk');
+const { getAllObjects, getObject } = require('../../sdk/object');
 
-exports.command = ['object <schemaId> [objectId]', 'objects <schemaId> [objectId]'];
+exports.command = [
+  'object <schemaId> [objectId]',
+  'objects <schemaId> [objectId]',
+];
 exports.describe = 'Get CRM object instance';
 
 exports.handler = async (options) => {

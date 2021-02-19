@@ -1,6 +1,6 @@
 const { cleanupDefaultArgs } = require('../../helpers/common');
 const { checkConfig } = require('../../config');
-const { updateObject } = require('../../sdk');
+const { updateObject } = require('../../sdk/object');
 
 exports.command = 'object <schemaId> <objectId> [properties]';
 exports.describe = 'Update CRM object instance';

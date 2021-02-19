@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const { checkConfig } = require('../config');
 
-const { getProperties } = require('../sdk');
+const { getProperties } = require('../sdk/schema');
 
 exports.command = 'properties <schemaId>';
 exports.describe = 'Get CRM schema properties';

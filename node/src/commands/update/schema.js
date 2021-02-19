@@ -1,7 +1,7 @@
 const { UPDATE_SCHEMA_ARRAY_PROPERTIES } = require('../../helpers/constants');
 const { cleanupDefaultArgs } = require('../../helpers/common');
 const { checkConfig } = require('../../config');
-const { updateSchema } = require('../../sdk');
+const { updateSchema } = require('../../sdk/schema');
 
 exports.command = 'schema <schemaId> [properties]';
 exports.describe = 'Update CRM schema';

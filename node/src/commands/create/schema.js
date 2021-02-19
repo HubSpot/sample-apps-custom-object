@@ -8,7 +8,7 @@ const {
 const { logger } = require('../../helpers/logger');
 const { checkConfig } = require('../../config');
 
-const { createSchema } = require('../../sdk');
+const { createSchema } = require('../../sdk/schema');
 
 exports.command = 'schema [name]';
 exports.describe = 'Create CRM schema';

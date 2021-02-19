@@ -1,5 +1,5 @@
 const { checkConfig } = require('../../config');
-const { deleteSchema } = require('../../sdk');
+const { deleteSchema } = require('../../sdk/schema');
 
 exports.command = 'schema <schemaId>';
 exports.describe = 'Delete CRM schema';

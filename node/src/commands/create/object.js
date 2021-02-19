@@ -1,7 +1,7 @@
 const { cleanupDefaultArgs } = require('../../helpers/common');
 const { checkConfig } = require('../../config');
 
-const { createObject } = require('../../sdk');
+const { createObject } = require('../../sdk/object');
 
 exports.command = 'object <schemaId>';
 exports.describe = 'Create CRM object instance from schema';

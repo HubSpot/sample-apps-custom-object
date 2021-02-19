@@ -2,7 +2,7 @@ const _ = require('lodash');
 const { checkConfig } = require('../../config');
 const { logger } = require('../../helpers/logger');
 
-const { getSchema, getAllSchemas } = require('../../sdk');
+const { getSchema, getAllSchemas } = require('../../sdk/schema');
 
 exports.command = ['schema [schemaId]', 'schemas [schemaId]'];
 exports.describe = 'Get CRM schema';

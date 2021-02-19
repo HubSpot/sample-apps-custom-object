@@ -1,6 +1,6 @@
 const { checkConfig } = require('../../config');
 
-const { archiveObject } = require('../../sdk');
+const { archiveObject } = require('../../sdk/object');
 
 exports.command = 'object <schemaId> <objectId>';
 exports.describe = 'Delete CRM object instance';
