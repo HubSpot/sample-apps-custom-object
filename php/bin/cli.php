@@ -4,6 +4,7 @@
 require __DIR__.'/../vendor/autoload.php';
 
 use Commands\InitCommand;
+use Commands\Schemas\DeleteCommand;
 use Commands\Schemas\GetCommand;
 use Symfony\Component\Console\Application;
 
@@ -14,6 +15,7 @@ if (file_exists(__DIR__.'/../.env')) {
 
 $application = new Application();
 $application->add(new InitCommand());
+$application->add(new DeleteCommand());
 $application->add(new GetCommand());
 
 $application->run();
