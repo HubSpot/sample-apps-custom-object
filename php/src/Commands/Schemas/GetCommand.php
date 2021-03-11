@@ -42,9 +42,10 @@ class GetCommand extends Command
         $hubspot = HubspotClientHelper::createFactory();
 
         if (!empty($input->getOption('objectTypeId'))) {
-            $io->writeln('Getting a schema by objectTypeId...');
+            $objectTypeId = $input->getOption('objectTypeId');
+            $io->writeln("Getting a schema by objectTypeId: {$objectTypeId}");
 
-            $response = $hubspot->crm()->schemas()->CoreApi()->getById($input->getOption('objectTypeId'));
+            $response = $hubspot->crm()->schemas()->CoreApi()->getById($objectTypeId);
 
             $io->info($response);
         } else {
