@@ -9,13 +9,14 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class GetCommand extends Command {
+class GetCommand extends Command
+{
     protected static $defaultName = 'schemas:get';
-    
+
     protected function configure()
     {
         $this->setDescription('Get CRM schema.');
-        
+
         $this
             ->addOption(
                 'all',
@@ -30,7 +31,7 @@ class GetCommand extends Command {
                 'objectTypeId',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Get schema by objectTypeId(Fully qualified name or object type ID of the target schema).'
+                'Get schema by objectTypeId (Fully qualified name or object type ID of the target schema).'
             )
         ;
     }
@@ -39,12 +40,12 @@ class GetCommand extends Command {
     {
         $io = new SymfonyStyle($input, $output);
         $hubspot = HubspotClientHelper::createFactory();
-        
+
         if (!empty($input->getOption('objectTypeId'))) {
-            $io->writeln('Getting a schema by id...');
-            
+            $io->writeln('Getting a schema by objectTypeId...');
+
             $response = $hubspot->crm()->schemas()->CoreApi()->getById($input->getOption('objectTypeId'));
-            
+
             $io->info($response);
         } else {
             $io->writeln('Getting all schemas...');
@@ -57,7 +58,7 @@ class GetCommand extends Command {
                 $io->writeln('No object schemas.');
             }
         }
-        
+
         return Command::SUCCESS;
     }
 }
