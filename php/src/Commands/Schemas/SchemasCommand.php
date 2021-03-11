@@ -5,8 +5,8 @@ namespace Commands\Schemas;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 
-class SchemasCommand extends Command {
-    
+class SchemasCommand extends Command
+{
     protected function addObjectTypeIdToCommand(): void
     {
         $this
