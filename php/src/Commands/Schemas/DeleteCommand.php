@@ -24,13 +24,14 @@ class DeleteCommand extends SchemasCommand
         $hubspot = HubspotClientHelper::createFactory();
 
         if (!empty($input->getArgument('objectTypeId'))) {
-            $io->writeln('Deleting a schema by objectTypeId...');
+            $objectTypeId = $input->getArgument('objectTypeId');
+            $io->writeln("Deleting a schema by objectTypeId: {$objectTypeId}");
 
-            $hubspot->crm()->schemas()->CoreApi()->archive($input->getArgument('objectTypeId'));
+            $hubspot->crm()->schemas()->CoreApi()->archive($objectTypeId);
 
             $io->writeln('Schema was successfully deleted.');
         }
 
-        return Command::SUCCESS;
+        return SchemasCommand::SUCCESS;
     }
 }
