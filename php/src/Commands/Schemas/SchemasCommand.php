@@ -23,10 +23,11 @@ class SchemasCommand extends Command
         $notEmptyValidator = $this->getNotEmptyValidator();
         
         return function ($string) use($notEmptyValidator): string {
-            if (empty($string)) {
-                throw new \RuntimeException('The value may not be blank.');
-            }
             $notEmptyValidator($string);
+            
+            if (strpos($string, ' ')) {
+                throw new \RuntimeException('The value may not contain spaces.');
+            }
 
             return mb_strtolower($string);
         };
