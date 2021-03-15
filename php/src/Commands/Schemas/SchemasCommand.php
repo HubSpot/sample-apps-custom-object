@@ -20,14 +20,13 @@ class SchemasCommand extends Command
 
     protected function getNamesValidator(): callable
     {
-        return function (string $string): string {
+        $notEmptyValidator = $this->getNotEmptyValidator();
+        
+        return function ($string) use($notEmptyValidator): string {
             if (empty($string)) {
                 throw new \RuntimeException('The value may not be blank.');
             }
-
-            if (strpos($string, ' ')) {
-                throw new \RuntimeException('The value may not contain spaces.');
-            }
+            $notEmptyValidator($string);
 
             return mb_strtolower($string);
         };
