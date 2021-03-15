@@ -35,7 +35,7 @@ class CreateCommand extends SchemasCommand
 
         $name = $io->ask('Enter a name for the schema', null, $this->getNamesValidator());
 
-        $properties = $this->askProperties($io);
+        $properties = $this->askForProperties($io);
         $io->writeln('Creating an object`s schema...');
 
         $schema = new ObjectSchemaEgg();
@@ -57,7 +57,7 @@ class CreateCommand extends SchemasCommand
         return SchemasCommand::SUCCESS;
     }
 
-    protected function askProperties(SymfonyStyle $io): array
+    protected function askForProperties(SymfonyStyle $io): array
     {
         $more = true;
         $properties = [];
@@ -79,7 +79,7 @@ class CreateCommand extends SchemasCommand
             }
 
             if ('enumeration' == $property->getType()) {
-                $property->setOptions($this->askOptions($io));
+                $property->setOptions($this->askForOptions($io));
             }
 
             $properties[] = $property;
@@ -93,7 +93,7 @@ class CreateCommand extends SchemasCommand
         ];
     }
 
-    protected function askOptions(SymfonyStyle $io): array
+    protected function askForOptions(SymfonyStyle $io): array
     {
         $io->note("Since you've chosen enumeration type of property, you need to add several options (at least one) for the new property.");
 
