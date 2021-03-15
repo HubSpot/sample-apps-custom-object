@@ -17,4 +17,30 @@ class SchemasCommand extends Command
             )
         ;
     }
+
+    protected function getNamesValidator(): callable
+    {
+        return function (string $string): string {
+            if (empty($string)) {
+                throw new \RuntimeException('The value may not be blank.');
+            }
+
+            if (strpos($string, ' ')) {
+                throw new \RuntimeException('The value may not contain spaces.');
+            }
+
+            return mb_strtolower($string);
+        };
+    }
+
+    protected function getNotEmptyValidator(): callable
+    {
+        return function ($value) {
+            if (empty($value)) {
+                throw new \RuntimeException('The value may not be blank.');
+            }
+
+            return $value;
+        };
+    }
 }
