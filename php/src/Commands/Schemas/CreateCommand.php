@@ -2,6 +2,7 @@
 
 namespace Commands\Schemas;
 
+use Doctrine\Inflector\InflectorFactory;
 use Helpers\HubspotClientHelper;
 use HubSpot\Client\Crm\Schemas\Model\ObjectSchemaEgg;
 use HubSpot\Client\Crm\Schemas\Model\ObjectTypeDefinitionLabels;
@@ -44,7 +45,7 @@ class CreateCommand extends SchemasCommand
 
         $labels = new ObjectTypeDefinitionLabels();
         $labels->setSingular($singularLabel);
-        $labels->setPlural($singularLabel.'s');
+        $labels->setPlural(InflectorFactory::create()->build()->pluralize($singularLabel));
         $schema->setLabels($labels);
 
         $schema->setProperties($properties['all']);
