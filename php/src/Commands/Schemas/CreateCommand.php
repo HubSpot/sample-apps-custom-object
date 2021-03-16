@@ -34,6 +34,8 @@ class CreateCommand extends SchemasCommand
         $hubspot = HubspotClientHelper::createFactory();
 
         $name = $io->ask('Enter a name for the schema', null, $this->getNamesValidator());
+        $singularLabel = $io->ask('Enter a singular label for the schema', null, $this->getNotEmptyValidator());
+        $pluralLabel = $io->ask('Enter a plural label for the schema', null, $this->getNotEmptyValidator());
 
         $properties = $this->askForProperties($io);
         $io->writeln('Creating an object`s schema...');
@@ -42,8 +44,8 @@ class CreateCommand extends SchemasCommand
         $schema->setName($name);
 
         $labels = new ObjectTypeDefinitionLabels();
-        $labels->setSingular(ucfirst($name));
-        $labels->setPlural(ucfirst($name));
+        $labels->setSingular($singularLabel);
+        $labels->setPlural($pluralLabel);
         $schema->setLabels($labels);
 
         $schema->setProperties($properties['all']);
