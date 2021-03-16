@@ -22,17 +22,17 @@ class UpdateCommand extends SchemasCommand
     {
         $io = new SymfonyStyle($input, $output);
         $hubspot = HubspotClientHelper::createFactory();
-        
+
         $objectTypeId = $input->getArgument('objectTypeId');
         $response = $hubspot->crm()->schemas()->CoreApi()->getById($objectTypeId);
         $labels = $response->getLabels();
-        
+
         $singularLabel = $io->ask(
             'Enter a new singular label for the schema',
             $labels->getSingular(),
             $this->getNotEmptyValidator()
         );
-        
+
         $pluralLabel = $io->ask(
             'Enter a new plural label for the schema',
             $labels->getPlural(),
@@ -40,22 +40,18 @@ class UpdateCommand extends SchemasCommand
         );
 
         $io->writeln("Updating an object with objectTypeId: {$objectTypeId}");
-        
-        
+
         $labels->setSingular($singularLabel);
         $labels->setPlural($pluralLabel);
         $schema = new ObjectTypeDefinitionPatch();
-        
+
         $schema->setLabels($labels);
         $schema->setRequiredProperties($response->getRequiredProperties());
-        
-        
+
         $updateResponse = $hubspot->crm()->schemas()->CoreApi()->update($objectTypeId, $schema);
-        
+
         $io->info($updateResponse);
 
         return SchemasCommand::SUCCESS;
     }
-
 }
-
