@@ -4,10 +4,13 @@
 require __DIR__.'/../vendor/autoload.php';
 
 use Commands\InitCommand;
-use Commands\Schemas\CreateCommand;
-use Commands\Schemas\DeleteCommand;
-use Commands\Schemas\GetCommand;
-use Commands\Schemas\UpdateCommand;
+use Commands\Objects\{
+    CreateCommand as ObjectsCreateCommand
+};
+use Commands\Schemas\CreateCommand as SchemasCreateCommand;
+use Commands\Schemas\DeleteCommand as SchemasDeleteCommand;
+use Commands\Schemas\GetCommand as SchemasGetCommand;
+use Commands\Schemas\UpdateCommand as SchemasUpdateCommand;
 use Symfony\Component\Console\Application;
 
 if (file_exists(__DIR__.'/../.env')) {
@@ -17,9 +20,10 @@ if (file_exists(__DIR__.'/../.env')) {
 
 $application = new Application();
 $application->add(new InitCommand());
-$application->add(new CreateCommand());
-$application->add(new DeleteCommand());
-$application->add(new GetCommand());
-$application->add(new UpdateCommand());
+$application->add(new ObjectsCreateCommand());
+$application->add(new SchemasCreateCommand());
+$application->add(new SchemasDeleteCommand());
+$application->add(new SchemasGetCommand());
+$application->add(new SchemasUpdateCommand());
 
 $application->run();
