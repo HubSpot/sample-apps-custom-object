@@ -33,16 +33,9 @@ class UpdateCommand extends SchemasCommand
             $this->getNotEmptyValidator()
         );
 
-        $pluralLabel = $io->ask(
-            'Enter a new plural label for the schema',
-            $labels->getPlural(),
-            $this->getNotEmptyValidator()
-        );
-
         $io->writeln("Updating an object with objectTypeId: {$objectTypeId}");
 
         $labels->setSingular($singularLabel);
-        $labels->setPlural($pluralLabel);
         $schema = new ObjectTypeDefinitionPatch();
 
         $schema->setLabels($labels);

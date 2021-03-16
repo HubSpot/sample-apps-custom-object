@@ -35,7 +35,6 @@ class CreateCommand extends SchemasCommand
 
         $name = $io->ask('Enter a name for the schema', null, $this->getNamesValidator());
         $singularLabel = $io->ask('Enter a singular label for the schema', null, $this->getNotEmptyValidator());
-        $pluralLabel = $io->ask('Enter a plural label for the schema', null, $this->getNotEmptyValidator());
 
         $properties = $this->askForProperties($io);
         $io->writeln('Creating an object`s schema...');
@@ -45,7 +44,7 @@ class CreateCommand extends SchemasCommand
 
         $labels = new ObjectTypeDefinitionLabels();
         $labels->setSingular($singularLabel);
-        $labels->setPlural($pluralLabel);
+        $labels->setPlural($singularLabel.'s');
         $schema->setLabels($labels);
 
         $schema->setProperties($properties['all']);
