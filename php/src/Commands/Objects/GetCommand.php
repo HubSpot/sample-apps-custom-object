@@ -51,7 +51,7 @@ class GetCommand extends ObjectCommand
 
             $io->info($response);
         } else {
-            $io->writeln("Getting all object instances from schema...");
+            $io->writeln('Getting all object instances from schema...');
 
             $response = $hubspot->crm()->objects()->basicApi()->getPage($objectTypeId);
 
