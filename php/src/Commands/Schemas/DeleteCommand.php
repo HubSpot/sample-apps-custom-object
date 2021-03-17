@@ -3,12 +3,13 @@
 namespace Commands\Schemas;
 
 use Helpers\HubspotClientHelper;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Traits\ObjectTypeIdCommandArgument;
 
-class DeleteCommand extends SchemasCommand
+class DeleteCommand extends Command
 {
     use ObjectTypeIdCommandArgument;
 
@@ -35,6 +36,6 @@ class DeleteCommand extends SchemasCommand
             $io->writeln('Schema was successfully deleted.');
         }
 
-        return SchemasCommand::SUCCESS;
+        return Command::SUCCESS;
     }
 }

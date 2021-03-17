@@ -4,15 +4,17 @@ namespace Commands\Schemas;
 
 use Doctrine\Inflector\InflectorFactory;
 use Helpers\HubspotClientHelper;
+use Helpers\ValidationHelper;
 use HubSpot\Client\Crm\Schemas\Model\ObjectSchemaEgg;
 use HubSpot\Client\Crm\Schemas\Model\ObjectTypeDefinitionLabels;
 use HubSpot\Client\Crm\Schemas\Model\ObjectTypePropertyCreate;
 use HubSpot\Client\Crm\Schemas\Model\OptionInput;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class CreateCommand extends SchemasCommand
+class CreateCommand extends Command
 {
     protected static $defaultName = 'schemas:create';
 
@@ -34,8 +36,8 @@ class CreateCommand extends SchemasCommand
         $io = new SymfonyStyle($input, $output);
         $hubspot = HubspotClientHelper::createFactory();
 
-        $name = $io->ask('Enter a name for the schema', null, $this->getNamesValidator());
-        $singularLabel = $io->ask('Enter a singular label for the schema', null, $this->getNotEmptyValidator());
+        $name = $io->ask('Enter a name for the schema', null, ValidationHelper::getNamesValidator());
+        $singularLabel = $io->ask('Enter a singular label for the schema', null, ValidationHelper::getNotEmptyValidator());
 
         $properties = $this->askForProperties($io);
         $io->writeln('Creating an object`s schema...');
@@ -56,17 +58,18 @@ class CreateCommand extends SchemasCommand
 
         $io->info($response);
 
-        return SchemasCommand::SUCCESS;
+        return Command::SUCCESS;
     }
 
     protected function askForProperties(SymfonyStyle $io): array
     {
+        $io->note('You need to add several properties (at least one) for the new schema.');
         $more = true;
         $properties = [];
         $requiredProperties = [];
         do {
             $property = new ObjectTypePropertyCreate();
-            $property->setName($io->ask('Enter a name for the property', null, $this->getNamesValidator()));
+            $property->setName($io->ask('Enter a name for the property', null, ValidationHelper::getNamesValidator()));
             $property->setLabel(ucfirst($property->getName()));
             if ($io->confirm('Is this property required when creating an object of this type?')) {
                 $requiredProperties[] = $property->getName();
@@ -104,8 +107,8 @@ class CreateCommand extends SchemasCommand
 
         do {
             $option = new OptionInput();
-            $option->setLabel($io->ask('Enter a label for the option', null, $this->getNotEmptyValidator()));
-            $option->setValue($io->ask('Enter a value for the option', null, $this->getNotEmptyValidator()));
+            $option->setLabel($io->ask('Enter a label for the option', null, ValidationHelper::getNotEmptyValidator()));
+            $option->setValue($io->ask('Enter a value for the option', null, ValidationHelper::getNotEmptyValidator()));
 
             $options[] = $option;
 

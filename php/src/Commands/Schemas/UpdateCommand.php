@@ -2,14 +2,17 @@
 
 namespace Commands\Schemas;
 
+use Doctrine\Inflector\InflectorFactory;
 use Helpers\HubspotClientHelper;
+use Helpers\ValidationHelper;
+use Symfony\Component\Console\Command\Command;
 use HubSpot\Client\Crm\Schemas\Model\ObjectTypeDefinitionPatch;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Traits\ObjectTypeIdCommandArgument;
 
-class UpdateCommand extends SchemasCommand
+class UpdateCommand extends Command
 {
     use ObjectTypeIdCommandArgument;
 
@@ -33,12 +36,13 @@ class UpdateCommand extends SchemasCommand
         $singularLabel = $io->ask(
             'Enter a new singular label for the schema',
             $labels->getSingular(),
-            $this->getNotEmptyValidator()
+            ValidationHelper::getNotEmptyValidator()
         );
 
         $io->writeln("Updating an object with objectTypeId: {$objectTypeId}");
 
         $labels->setSingular($singularLabel);
+        $labels->setPlural(InflectorFactory::create()->build()->pluralize($singularLabel));
         $schema = new ObjectTypeDefinitionPatch();
 
         $schema->setLabels($labels);
@@ -48,6 +52,6 @@ class UpdateCommand extends SchemasCommand
 
         $io->info($updateResponse);
 
-        return SchemasCommand::SUCCESS;
+        return Command::SUCCESS;
     }
 }
