@@ -14,7 +14,7 @@ class DeleteCommand extends ObjectCommand
     protected function configure()
     {
         $this->setDescription('Delete CRM object instance(s) from schema.');
-        
+
         $this->addObjectTypeIdToCommand();
         $this->addIdToCommand();
     }
@@ -25,7 +25,7 @@ class DeleteCommand extends ObjectCommand
         $hubspot = HubspotClientHelper::createFactory();
         $objectTypeId = $input->getArgument('objectTypeId');
         $id = $input->getArgument('id');
-        
+
         $io->writeln("Deleting CRM object instance from schema by id: {$id}");
 
         $response = $hubspot->crm()->objects()->basicApi()->archive($objectTypeId, $id);

@@ -19,9 +19,9 @@ class ObjectCommand extends BaseCommand
             )
         ;
     }
-    
+
     protected function addIdToCommand(): void
-    {   
+    {
         $this
             ->addArgument(
                 'id',
