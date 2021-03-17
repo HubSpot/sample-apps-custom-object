@@ -19,6 +19,17 @@ class ObjectCommand extends BaseCommand
             )
         ;
     }
+    
+    protected function addIdToCommand(): void
+    {   
+        $this
+            ->addArgument(
+                'id',
+                InputArgument::REQUIRED,
+                'Enter Object Id.'
+            )
+        ;
+    }
 
     protected function getProperties(array $elements): array
     {
