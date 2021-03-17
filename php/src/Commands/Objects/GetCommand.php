@@ -14,7 +14,7 @@ class GetCommand extends ObjectCommand
 
     protected function configure()
     {
-        $this->setDescription('Get CRM objects by objectTypeId (Fully qualified name or object type ID for the target schema).');
+        $this->setDescription('Get CRM object instance(s) by objectTypeId.');
 
         $this
             ->addOption(
@@ -32,7 +32,7 @@ class GetCommand extends ObjectCommand
                 'id',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Get an object by object`s Id.'
+                'Get CRM object instance by Id.'
             )
         ;
     }
@@ -45,13 +45,13 @@ class GetCommand extends ObjectCommand
 
         if (!empty($input->getOption('id'))) {
             $id = $input->getOption('id');
-            $io->writeln("Getting an object by objectTypeId: {$objectTypeId} and object's id: {$id}");
+            $io->writeln("Getting CRM object instance by objectTypeId: {$objectTypeId} and object's id: {$id}");
 
             $response = $hubspot->crm()->objects()->basicApi()->getById($objectTypeId, $id);
 
             $io->info($response);
         } else {
-            $io->writeln("Getting all objects by objectTypeId: {$objectTypeId}");
+            $io->writeln("Getting all object instances by objectTypeId: {$objectTypeId}");
 
             $response = $hubspot->crm()->objects()->basicApi()->getPage($objectTypeId);
 
