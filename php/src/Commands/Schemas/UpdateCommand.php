@@ -7,15 +7,18 @@ use HubSpot\Client\Crm\Schemas\Model\ObjectTypeDefinitionPatch;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Traits\ObjectTypeIdCommandArgument;
 
 class UpdateCommand extends SchemasCommand
 {
+    use ObjectTypeIdCommandArgument;
+
     protected static $defaultName = 'schemas:update';
 
     protected function configure()
     {
         $this->setDescription('Update an object`s schema by objectTypeId (Fully qualified name or object type ID for the target schema).');
-        $this->addObjectTypeIdToCommand();
+        $this->addObjectTypeIdArgument();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
