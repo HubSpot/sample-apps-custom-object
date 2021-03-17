@@ -4,9 +4,8 @@
 require __DIR__.'/../vendor/autoload.php';
 
 use Commands\InitCommand;
-use Commands\Objects\{
-    CreateCommand as ObjectsCreateCommand
-};
+use Commands\Objects\CreateCommand as ObjectsCreateCommand;
+use Commands\Objects\GetCommand as ObjectsGetCommand;
 use Commands\Schemas\CreateCommand as SchemasCreateCommand;
 use Commands\Schemas\DeleteCommand as SchemasDeleteCommand;
 use Commands\Schemas\GetCommand as SchemasGetCommand;
@@ -21,6 +20,7 @@ if (file_exists(__DIR__.'/../.env')) {
 $application = new Application();
 $application->add(new InitCommand());
 $application->add(new ObjectsCreateCommand());
+$application->add(new ObjectsGetCommand());
 $application->add(new SchemasCreateCommand());
 $application->add(new SchemasDeleteCommand());
 $application->add(new SchemasGetCommand());
