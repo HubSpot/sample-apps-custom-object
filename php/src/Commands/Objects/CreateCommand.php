@@ -14,7 +14,7 @@ class CreateCommand extends ObjectCommand
 
     protected function configure()
     {
-        $this->setDescription('Create an object by objectTypeId.');
+        $this->setDescription('Create CRM object instance from schema.');
         $this->addObjectTypeIdToCommand();
         $this->addPropertiesToCommand();
     }
@@ -25,7 +25,7 @@ class CreateCommand extends ObjectCommand
         $hubspot = HubspotClientHelper::createFactory();
         $objectTypeId = $input->getArgument('objectTypeId');
 
-        $io->writeln("Creating an object by objectTypeId: {$objectTypeId}");
+        $io->writeln('Creating CRM object instance from schema...');
 
         $object = new SimplePublicObjectInput();
         $object->setProperties($this->getProperties($input->getArgument('properties')));
