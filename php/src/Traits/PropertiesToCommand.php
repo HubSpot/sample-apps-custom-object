@@ -1,13 +1,12 @@
 <?php
 
-namespace Commands\Objects;
+namespace Traits;
 
-use Commands\BaseCommand;
 use Symfony\Component\Console\Input\InputArgument;
 
-class ObjectCommand extends BaseCommand
+trait PropertiesToCommand
 {
-    const KEY_VALUE_COUNT = 2;
+    protected $keyValueCount = 2;
 
     protected function addPropertiesToCommand(): void
     {
@@ -25,7 +24,7 @@ class ObjectCommand extends BaseCommand
         $properties = [];
         foreach ($elements as $element) {
             $array = explode('=', $element);
-            if (static::KEY_VALUE_COUNT != count($array)) {
+            if ($this->keyValueCount != count($array)) {
                 throw new \RuntimeException('Invalid Element "'.$element.'".');
             }
             $properties[$array[0]] = $array[1];

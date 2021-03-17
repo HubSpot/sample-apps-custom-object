@@ -6,9 +6,12 @@ use Helpers\HubspotClientHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Traits\ObjectTypeIdToCommand;
 
 class DeleteCommand extends SchemasCommand
 {
+    use ObjectTypeIdToCommand;
+
     protected static $defaultName = 'schemas:delete';
 
     protected function configure(): void

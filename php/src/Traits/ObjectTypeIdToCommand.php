@@ -1,11 +1,10 @@
 <?php
 
-namespace Commands;
+namespace Traits;
 
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 
-class BaseCommand extends Command
+trait ObjectTypeIdToCommand
 {
     protected function addObjectTypeIdToCommand(): void
     {

@@ -7,9 +7,12 @@ use HubSpot\Client\Crm\Schemas\Model\ObjectTypeDefinitionPatch;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Traits\ObjectTypeIdToCommand;
 
 class UpdateCommand extends SchemasCommand
 {
+    use ObjectTypeIdToCommand;
+
     protected static $defaultName = 'schemas:update';
 
     protected function configure()

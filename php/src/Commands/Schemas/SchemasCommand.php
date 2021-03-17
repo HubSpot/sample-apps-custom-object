@@ -2,9 +2,9 @@
 
 namespace Commands\Schemas;
 
-use Commands\BaseCommand;
+use Symfony\Component\Console\Command\Command;
 
-class SchemasCommand extends BaseCommand
+class SchemasCommand extends Command
 {
     protected function getNamesValidator(): callable
     {

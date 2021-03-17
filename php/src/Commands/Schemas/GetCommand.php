@@ -8,9 +8,12 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Traits\ObjectTypeIdToCommand;
 
 class GetCommand extends Command
 {
+    use ObjectTypeIdToCommand;
+
     protected static $defaultName = 'schemas:get';
 
     protected function configure()

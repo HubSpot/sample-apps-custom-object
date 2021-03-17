@@ -4,12 +4,18 @@ namespace Commands\Objects;
 
 use Helpers\HubspotClientHelper;
 use HubSpot\Client\Crm\Objects\Model\SimplePublicObjectInput;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Traits\ObjectTypeIdToCommand;
+use Traits\PropertiesToCommand;
 
-class CreateCommand extends ObjectCommand
+class CreateCommand extends Command
 {
+    use ObjectTypeIdToCommand;
+    use PropertiesToCommand;
+
     protected static $defaultName = 'objects:create';
 
     protected function configure()
@@ -36,6 +42,6 @@ class CreateCommand extends ObjectCommand
 
         $io->info($response);
 
-        return ObjectCommand::SUCCESS;
+        return Command::SUCCESS;
     }
 }
