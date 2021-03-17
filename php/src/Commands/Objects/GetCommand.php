@@ -14,7 +14,7 @@ class GetCommand extends ObjectCommand
 
     protected function configure()
     {
-        $this->setDescription('Get CRM object instance(s) by objectTypeId.');
+        $this->setDescription('Get CRM object instance(s) from schema.');
 
         $this
             ->addOption(
@@ -45,20 +45,20 @@ class GetCommand extends ObjectCommand
 
         if (!empty($input->getOption('id'))) {
             $id = $input->getOption('id');
-            $io->writeln("Getting CRM object instance by objectTypeId: {$objectTypeId} and object's id: {$id}");
+            $io->writeln("Getting CRM object instance from schema by id: {$id}");
 
             $response = $hubspot->crm()->objects()->basicApi()->getById($objectTypeId, $id);
 
             $io->info($response);
         } else {
-            $io->writeln("Getting all object instances by objectTypeId: {$objectTypeId}");
+            $io->writeln("Getting all object instances from schema...");
 
             $response = $hubspot->crm()->objects()->basicApi()->getPage($objectTypeId);
 
             if (count($response->getResults()) > 0) {
                 $io->listing($response->getResults());
             } else {
-                $io->writeln('No object objects.');
+                $io->writeln('No objects in this scheme.');
             }
         }
 
