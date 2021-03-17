@@ -6,11 +6,11 @@ use Helpers\HubspotClientHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Traits\ObjectTypeIdToCommand;
+use Traits\ObjectTypeIdCommandArgument;
 
 class DeleteCommand extends SchemasCommand
 {
-    use ObjectTypeIdToCommand;
+    use ObjectTypeIdCommandArgument;
 
     protected static $defaultName = 'schemas:delete';
 
@@ -18,7 +18,7 @@ class DeleteCommand extends SchemasCommand
     {
         $this->setDescription('Delete CRM schema by objectTypeId (Fully qualified name or object type ID for the target schema).');
 
-        $this->addObjectTypeIdToCommand();
+        $this->addObjectTypeIdArgument();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

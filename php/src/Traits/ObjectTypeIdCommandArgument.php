@@ -4,9 +4,9 @@ namespace Traits;
 
 use Symfony\Component\Console\Input\InputArgument;
 
-trait ObjectTypeIdToCommand
+trait ObjectTypeIdCommandArgument
 {
-    protected function addObjectTypeIdToCommand(): void
+    protected function addObjectTypeIdArgument(): void
     {
         $this
             ->addArgument(
