@@ -14,7 +14,7 @@ class CreateCommand extends ObjectCommand
 
     protected function configure()
     {
-        $this->setDescription('Create an object by objectTypeId (Fully qualified name or object type ID for the target schema).');
+        $this->setDescription('Create an object by objectTypeId.');
         $this->addObjectTypeIdToCommand();
         $this->addPropertiesToCommand();
     }
