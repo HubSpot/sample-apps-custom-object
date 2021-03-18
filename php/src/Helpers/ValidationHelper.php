@@ -1,14 +1,12 @@
 <?php
 
-namespace Commands\Schemas;
+namespace Helpers;
 
-use Symfony\Component\Console\Command\Command;
-
-class SchemasCommand extends Command
+class ValidationHelper
 {
-    protected function getNamesValidator(): callable
+    public static function getNamesValidator(): callable
     {
-        $notEmptyValidator = $this->getNotEmptyValidator();
+        $notEmptyValidator = static::getNotEmptyValidator();
 
         return function ($string) use ($notEmptyValidator): string {
             $notEmptyValidator($string);
@@ -21,7 +19,7 @@ class SchemasCommand extends Command
         };
     }
 
-    protected function getNotEmptyValidator(): callable
+    public static function getNotEmptyValidator(): callable
     {
         return function ($value) {
             if (empty($value)) {
