@@ -3,16 +3,17 @@
 namespace Commands\Objects;
 
 use Helpers\HubspotClientHelper;
+use Helpers\SchemaIdConverter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Traits\ObjectTypeIdCommandArgument;
+use Traits\SchemaIdCommandArgument;
 
 class GetCommand extends Command
 {
-    use ObjectTypeIdCommandArgument;
+    use SchemaIdCommandArgument;
     protected static $defaultName = 'objects:get';
 
     protected function configure()
@@ -28,14 +29,14 @@ class GetCommand extends Command
             )
         ;
 
-        $this->addObjectTypeIdArgument();
+        $this->addSchemaIdArgument();
 
         $this
             ->addOption(
                 'id',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Enter CRM object instance Id.'
+                'CRM object instance Id.'
             )
         ;
     }
@@ -44,7 +45,7 @@ class GetCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $hubspot = HubspotClientHelper::createFactory();
-        $objectTypeId = $input->getArgument('objectTypeId');
+        $objectTypeId = SchemaIdConverter::toObjectTypeId($input->getArgument('schemaId'));
         $schema = $hubspot->crm()->schemas()->CoreApi()->getById($objectTypeId);
 
         if (!empty($input->getOption('id'))) {

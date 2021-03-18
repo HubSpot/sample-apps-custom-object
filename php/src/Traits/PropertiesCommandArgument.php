@@ -12,7 +12,7 @@ trait PropertiesCommandArgument
             ->addArgument(
                 'properties',
                 InputArgument::IS_ARRAY | InputArgument::REQUIRED,
-                'Enter Properties (separate multiple names with a space), for example firstname=Josh lastname=Green.'
+                'Properties (separate multiple names with a space), for example firstname=Josh lastname=Green.'
             )
         ;
     }

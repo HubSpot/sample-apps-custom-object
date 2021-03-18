@@ -3,6 +3,8 @@
 namespace Commands\Schemas;
 
 use Helpers\HubspotClientHelper;
+use Helpers\SchemaIdConverter;
+use HubSpot\Client\Crm\Schemas\ObjectSerializer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -28,10 +30,10 @@ class GetCommand extends Command
 
         $this
             ->addOption(
-                'objectTypeId',
+                'schemaId',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Get schema by objectTypeId (Fully qualified name or object type ID of the target schema).'
+                'Schema`s Id.'
             )
         ;
     }
@@ -41,11 +43,13 @@ class GetCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $hubspot = HubspotClientHelper::createFactory();
 
-        if (!empty($input->getOption('objectTypeId'))) {
-            $objectTypeId = $input->getOption('objectTypeId');
-            $io->writeln("Getting a schema by objectTypeId: {$objectTypeId}");
+        if (!empty($input->getOption('schemaId'))) {
+            $schemaId = $input->getOption('schemaId');
+            $io->writeln("Getting a schema by objectTypeId: {$schemaId}");
 
-            $response = $hubspot->crm()->schemas()->CoreApi()->getById($objectTypeId);
+            $response = $hubspot->crm()->schemas()->CoreApi()
+                ->getById(SchemaIdConverter::toObjectTypeId($schemaId))
+            ;
 
             $io->info($response);
         } else {
@@ -53,13 +57,30 @@ class GetCommand extends Command
 
             $response = $hubspot->crm()->schemas()->CoreApi()->getAll();
 
-            if (count($response->getResults()) > 0) {
-                $io->listing($response->getResults());
-            } else {
-                $io->writeln('No object schemas.');
-            }
+            $this->outSchemas($response->getResults(), $io);
         }
 
         return Command::SUCCESS;
+    }
+
+    protected function outSchemas(array $schemas, SymfonyStyle $io): void
+    {
+        if (count($schemas) > 0) {
+            $io->listing($schemas);
+            $io->table(
+                ['id', 'name', 'fully_qualified_name', 'object_type_id'],
+                array_map(function ($schema) {
+                    return
+                        ObjectSerializer::sanitizeForSerialization([
+                            'id' => $schema->getId(),
+                            'name' => $schema->getName(),
+                            'fully_qualified_name' => $schema->getFullyQualifiedName(),
+                            'object_type_id' => $schema->getObjectTypeId(),
+                        ]);
+                }, $schemas)
+            );
+        } else {
+            $io->writeln('No object schemas.');
+        }
     }
 }

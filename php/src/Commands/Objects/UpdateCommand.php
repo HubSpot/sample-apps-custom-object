@@ -4,27 +4,28 @@ namespace Commands\Objects;
 
 use Helpers\HubspotClientHelper;
 use Helpers\PropertiesHelper;
+use Helpers\SchemaIdConverter;
 use HubSpot\Client\Crm\Objects\Model\SimplePublicObjectInput;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Traits\ObjectIdCommandArgument;
-use Traits\ObjectTypeIdCommandArgument;
 use Traits\PropertiesCommandArgument;
+use Traits\SchemaIdCommandArgument;
 
 class UpdateCommand extends Command
 {
     use ObjectIdCommandArgument;
-    use ObjectTypeIdCommandArgument;
+    use SchemaIdCommandArgument;
     use PropertiesCommandArgument;
 
     protected static $defaultName = 'objects:update';
 
     protected function configure()
     {
-        $this->setDescription('Update CRM object instance from schema.');
-        $this->addObjectTypeIdArgument();
+        $this->setDescription('Update CRM object instance from schema by id.');
+        $this->addSchemaIdArgument();
         $this->addObjectIdArgument();
         $this->addPropertiesArgument();
     }
@@ -33,10 +34,10 @@ class UpdateCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $hubspot = HubspotClientHelper::createFactory();
-        $objectTypeId = $input->getArgument('objectTypeId');
+        $objectTypeId = SchemaIdConverter::toObjectTypeId($input->getArgument('schemaId'));
         $id = $input->getArgument('id');
 
-        $io->writeln('Updating CRM object instance from schema...');
+        $io->writeln("Updating CRM object instance from schema by id: {$id}");
 
         $object = new SimplePublicObjectInput();
         $object->setProperties(PropertiesHelper::parseProperties($input->getArgument('properties')));

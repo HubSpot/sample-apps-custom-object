@@ -3,38 +3,38 @@
 namespace Commands\Schemas;
 
 use Helpers\HubspotClientHelper;
+use Helpers\SchemaIdConverter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Traits\ObjectTypeIdCommandArgument;
+use Traits\SchemaIdCommandArgument;
 
 class DeleteCommand extends Command
 {
-    use ObjectTypeIdCommandArgument;
+    use SchemaIdCommandArgument;
 
     protected static $defaultName = 'schemas:delete';
 
     protected function configure(): void
     {
-        $this->setDescription('Delete CRM schema by objectTypeId (Fully qualified name or object type ID for the target schema).');
+        $this->setDescription('Delete CRM schema by schemaId.');
 
-        $this->addObjectTypeIdArgument();
+        $this->addSchemaIdArgument();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
         $hubspot = HubspotClientHelper::createFactory();
+        $schemaId = $input->getArgument('schemaId');
+        $io->writeln("Deleting a schema by schemaId: {$schemaId}");
 
-        if (!empty($input->getArgument('objectTypeId'))) {
-            $objectTypeId = $input->getArgument('objectTypeId');
-            $io->writeln("Deleting a schema by objectTypeId: {$objectTypeId}");
+        $hubspot->crm()->schemas()->CoreApi()
+            ->archive(SchemaIdConverter::toObjectTypeId($schemaId))
+        ;
 
-            $hubspot->crm()->schemas()->CoreApi()->archive($objectTypeId);
-
-            $io->writeln('Schema was successfully deleted.');
-        }
+        $io->writeln('Schema was successfully deleted.');
 
         return Command::SUCCESS;
     }
