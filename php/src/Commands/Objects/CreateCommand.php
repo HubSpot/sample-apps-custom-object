@@ -4,17 +4,18 @@ namespace Commands\Objects;
 
 use Helpers\HubspotClientHelper;
 use Helpers\PropertiesHelper;
+use Helpers\SchemaIdConverter;
 use HubSpot\Client\Crm\Objects\Model\SimplePublicObjectInput;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Traits\ObjectTypeIdCommandArgument;
 use Traits\PropertiesCommandArgument;
+use Traits\SchemaIdCommandArgument;
 
 class CreateCommand extends Command
 {
-    use ObjectTypeIdCommandArgument;
+    use SchemaIdCommandArgument;
     use PropertiesCommandArgument;
 
     protected static $defaultName = 'objects:create';
@@ -22,7 +23,7 @@ class CreateCommand extends Command
     protected function configure()
     {
         $this->setDescription('Create CRM object instance from schema.');
-        $this->addObjectTypeIdArgument();
+        $this->addSchemaIdArgument();
         $this->addPropertiesArgument();
     }
 
@@ -30,7 +31,7 @@ class CreateCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $hubspot = HubspotClientHelper::createFactory();
-        $objectTypeId = $input->getArgument('objectTypeId');
+        $objectTypeId = SchemaIdConverter::toObjectTypeId($input->getArgument('schemaId'));
 
         $io->writeln('Creating CRM object instance from schema...');
 

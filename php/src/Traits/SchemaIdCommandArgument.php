@@ -4,15 +4,15 @@ namespace Traits;
 
 use Symfony\Component\Console\Input\InputArgument;
 
-trait ObjectIdCommandArgument
+trait SchemaIdCommandArgument
 {
-    protected function addObjectIdArgument(): void
+    protected function addSchemaIdArgument(): void
     {
         $this
             ->addArgument(
-                'id',
+                'schemaId',
                 InputArgument::REQUIRED,
-                'CRM object instance Id.'
+                'Schema`s Id.'
             )
         ;
     }

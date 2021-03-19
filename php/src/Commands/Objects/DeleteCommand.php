@@ -3,17 +3,18 @@
 namespace Commands\Objects;
 
 use Helpers\HubspotClientHelper;
+use Helpers\SchemaIdConverter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Traits\ObjectIdCommandArgument;
-use Traits\ObjectTypeIdCommandArgument;
+use Traits\SchemaIdCommandArgument;
 
 class DeleteCommand extends Command
 {
-    use ObjectTypeIdCommandArgument;
     use ObjectIdCommandArgument;
+    use SchemaIdCommandArgument;
 
     protected static $defaultName = 'objects:delete';
 
@@ -21,7 +22,7 @@ class DeleteCommand extends Command
     {
         $this->setDescription('Delete CRM object instance from schema by id.');
 
-        $this->addObjectTypeIdArgument();
+        $this->addSchemaIdArgument();
 
         $this->addObjectIdArgument();
     }
@@ -30,7 +31,7 @@ class DeleteCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $hubspot = HubspotClientHelper::createFactory();
-        $objectTypeId = $input->getArgument('objectTypeId');
+        $objectTypeId = SchemaIdConverter::toObjectTypeId($input->getArgument('schemaId'));
         $id = $input->getArgument('id');
 
         $io->writeln("Deleting CRM object instance from schema by id: {$id}");
