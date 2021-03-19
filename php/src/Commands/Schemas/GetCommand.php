@@ -57,13 +57,13 @@ class GetCommand extends Command
 
             $response = $hubspot->crm()->schemas()->CoreApi()->getAll();
 
-            $this->outSchemas($response->getResults(), $io);
+            $this->printSchemas($response->getResults(), $io);
         }
 
         return Command::SUCCESS;
     }
 
-    protected function outSchemas(array $schemas, SymfonyStyle $io): void
+    protected function printSchemas(array $schemas, SymfonyStyle $io): void
     {
         if (count($schemas) > 0) {
             $io->listing($schemas);
