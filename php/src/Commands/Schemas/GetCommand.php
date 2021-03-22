@@ -4,6 +4,7 @@ namespace Commands\Schemas;
 
 use Helpers\HubspotClientHelper;
 use Helpers\SchemaIdConverter;
+use HubSpot\Client\Crm\Schemas\Model\ObjectSchema;
 use HubSpot\Client\Crm\Schemas\ObjectSerializer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -51,7 +52,7 @@ class GetCommand extends Command
                 ->getById(SchemaIdConverter::toObjectTypeId($schemaId))
             ;
 
-            $io->info($response);
+            $this->printPropertiesTable($response, $io);
         } else {
             $io->writeln('Getting all schemas...');
 
@@ -82,5 +83,21 @@ class GetCommand extends Command
         } else {
             $io->writeln('No object schemas.');
         }
+    }
+
+    protected function printPropertiesTable(ObjectSchema $schema, SymfonyStyle $io): void
+    {
+        $io->info($schema);
+        $io->table(
+            ['name', 'label', 'type', 'groupName'],
+            array_map(function ($property) {
+                return [
+                    'name' => $property->getName(),
+                    'label' => $property->getLabel(),
+                    'type' => $property->getType(),
+                    'groupName' => $property->getGroupName(),
+                ];
+            }, $schema->getProperties())
+        );
     }
 }
