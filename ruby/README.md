@@ -103,7 +103,7 @@ Get an object by id
 ruby cli.rb -a object -m get_by_id -t [schema_id] -i [object_id]
 ```
 
-Creare new object
+Create new object
 
 ```bash
 ruby cli.rb -m create -t [schema_id] -p [params]
