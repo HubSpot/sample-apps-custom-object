@@ -80,7 +80,7 @@ Get object from schema by Id
 Create a new object 
 
 ```bash
-./bin/cli.php objects:create <schemaId> name=josh age=10   
+./bin/cli.php objects:create <schemaId> name=Brian age=25   
 ```
 
 Update existing object
