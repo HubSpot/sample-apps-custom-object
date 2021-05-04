@@ -21,7 +21,7 @@ If .env config file was not configured manually there is a way to initialize the
 ./bin/cli.js init
 ```
 
-It will ask for your Hubspot Api Key and will save it to new .env config file.
+It will ask for your Hubspot Api Key and will save it to the new .env config file.
 
 3. Commands
 
@@ -44,7 +44,7 @@ Create a new schema or object instance
 
 Please also notice when you create object instance, some of them require mandatory properties, that you can provide in the following way:
 ```bash
-./bin/cli.js create object [schemaId] --email='test@test.com' --name='Test name'
+./bin/cli.js create object [schemaId] --email='Brian.Halligan@test.com' --firstname='Brian' --lastname='Halligan'
 ```
 
 Update existing schema or object instance
