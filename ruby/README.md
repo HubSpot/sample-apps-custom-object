@@ -1,4 +1,4 @@
-# HubSpot-ruby CRM-objects sample app
+# HubSpot-ruby Custom Objects sample app
 
 ### Requirements
 
@@ -105,7 +105,7 @@ ruby cli.rb -a object -m get_by_id -t [schema_id] -i [object_id]
 
 Create new object
 
-```bash
+```
 ruby cli.rb -m create -t [schema_id] -p [params]
 ```
 
@@ -117,7 +117,7 @@ Params is a json, example:
 
 Update an object
 
-```bash
+```
 ruby cli.rb -a object -m update -t [schema_id] -i [object_id] -p [params]
 ```
 
@@ -129,6 +129,6 @@ Params is a json, example:
 
 Delete an object
 
-```bash
+```
 ruby cli.rb -m archive -t [schema_id] -i [object_id]
 ```
