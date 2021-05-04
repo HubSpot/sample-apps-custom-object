@@ -21,7 +21,7 @@ If .env config file was not configured manually there is a way to initialize the
 ./bin/cli.php app:init 
 ```
 
-It will ask for your Hubspot Api Key and will save it to new .env config file.
+It will ask for your Hubspot Api Key and will save it to the new .env config file.
 
 3. Commands
 
@@ -86,7 +86,7 @@ Create a new object
 Update existing object
 
 ```bash
-./bin/cli.php objects:update <schemaId> <objectId> name=Josh age=11
+./bin/cli.php objects:update <schemaId> <objectId> name=Ryan age=30
 ```
 
 Delete existing object from schema
