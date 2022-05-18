@@ -23,11 +23,13 @@ exports.handler = async (options) => {
 
   if (all) {
     const schemasResponse = await getAllSchemas();
-    console.table(
-      schemasResponse.map((item) =>
-        _.pick(item, ['id', 'name', 'objectTypeId', 'fullyQualifiedName'])
-      )
-    );
+    if (schemasResponse) {
+      console.table(
+        schemasResponse.map((item) =>
+          _.pick(item, ['id', 'name', 'objectTypeId', 'fullyQualifiedName'])
+        )
+      );
+    }
   } else {
     await getSchema({ schemaId });
   }

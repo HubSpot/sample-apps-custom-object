@@ -31,7 +31,7 @@ exports.handler = async (options) => {
   const schema = {
     name,
     labels: {
-      singular: label,
+      singular: pluralize.singular(label),
       plural: pluralize(label),
     },
     requiredProperties,
