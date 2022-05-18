@@ -17,17 +17,17 @@
   "author": "hubspot",
   "license": "Apache-2.0",
   "dependencies": {
-    "@hubspot/api-client": "^3.0.1",
+    "@hubspot/api-client": "^6.0.1",
     "bluebird": "^3.7.2",
     "chalk": "^4.1.0",
-    "dotenv": "^8.1.0",
+    "dotenv": "^10.0.0",
     "inquirer": "^7.3.3",
     "lodash": "^4.17.15",
     "pluralize": "^8.0.0",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
-    "nodemon": "^1.19.3",
+    "nodemon": "^2.0",
     "prettier": "^2.2.1"
   }
 }
