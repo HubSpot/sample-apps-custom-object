@@ -16,7 +16,7 @@ const getAllSchemas = async () => {
     logger.log(`Calling crm.schemas.coreApi.getAll API method.`);
     const schemasResponse = await hubspotClient.crm.schemas.coreApi.getAll();
     logResponse(schemasResponse);
-    return _.get(schemasResponse, 'results', null);
+    return _.get(schemasResponse, 'results', []);
   } catch (e) {
     handleError(e);
   }

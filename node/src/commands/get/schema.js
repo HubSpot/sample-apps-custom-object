@@ -23,7 +23,7 @@ exports.handler = async (options) => {
 
   if (all) {
     const schemasResponse = await getAllSchemas();
-    if (schemasResponse) {
+    if (schemasResponse.length) {
       console.table(
         schemasResponse.map((item) =>
           _.pick(item, ['id', 'name', 'objectTypeId', 'fullyQualifiedName'])
