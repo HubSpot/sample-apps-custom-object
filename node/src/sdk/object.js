@@ -25,7 +25,7 @@ const createObject = async ({ objectType, properties }) => {
     );
     logResponse(createResponse);
 
-    const objectId = _.get(createResponse, 'body.id');
+    const objectId = _.get(createResponse, 'id');
     logger.log(`Created object with id ${objectId}`);
     return objectId;
   } catch (e) {
@@ -72,8 +72,8 @@ const getAllObjects = async ({ objectType, properties, query }) => {
         );
       }
       logResponse(objectsResponse);
-      after = _.get(objectsResponse, 'body.paging.next.after');
-      objects.push(...objectsResponse.body.results);
+      after = _.get(objectsResponse, 'paging.next.after');
+      objects.push(...objectsResponse.results);
     } while (!_.isNil(after));
 
     return objects;
@@ -101,7 +101,7 @@ const getObject = async ({ objectId, objectType }) => {
     logResponse(propertiesResponse);
 
     const objectPropertiesNames = _.map(
-      propertiesResponse.body.results,
+      propertiesResponse.results,
       'name'
     );
 

@@ -16,7 +16,7 @@ const getAllSchemas = async () => {
     logger.log(`Calling crm.schemas.coreApi.getAll API method.`);
     const schemasResponse = await hubspotClient.crm.schemas.coreApi.getAll();
     logResponse(schemasResponse);
-    return _.get(schemasResponse, 'body.results', []);
+    return _.get(schemasResponse, 'results', []);
   } catch (e) {
     handleError(e);
   }
@@ -40,7 +40,7 @@ const getSchema = async ({ schemaId }) => {
     );
     logResponse(schemaResponse);
 
-    return _.get(schemaResponse, 'body');
+    return schemaResponse;
   } catch (e) {
     handleError(e);
   }
@@ -59,7 +59,7 @@ const createSchema = async (schema) => {
     );
     logResponse(createResponse);
 
-    const schemaId = _.get(createResponse, 'body.id');
+    const schemaId = _.get(createResponse, 'id');
     logger.log(`Created schema with id ${schemaId}`);
     return schemaId;
   } catch (e) {
@@ -134,7 +134,7 @@ const getProperties = async ({ objectType }) => {
     );
     logResponse(propertiesResponse);
 
-    return propertiesResponse.body.results;
+    return propertiesResponse.results;
   } catch (e) {
     handleError(e);
   }
