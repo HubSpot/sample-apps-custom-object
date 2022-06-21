@@ -22,8 +22,8 @@ class Cli
   }.freeze
 
   API = {
-    schema: Hubspot::Crm::Schemas::CoreApi.new,
-    object: Hubspot::Crm::Objects::BasicApi.new
+    schema: Hubspot::Client.new(access_token: access_token).crm.schemas.core_api,
+    object: Hubspot::Client.new(access_token: access_token).crm.objects.basic_api
   }.freeze
 
   def initialize(options)
@@ -49,16 +49,11 @@ class Cli
   end
 
   def call_api
-    API[api_type].public_send(method, *params)
+    API[api_type].public_send(method, params)
   end
 
   def params
-    required_params = REQUIRED_PARAMS[api_type][method]
-    mapped_params = required_params.map { |param| options[param] }
-    opts = options[:opts] || {}
-    opts[:auth_names] = 'hapikey'
-    mapped_params << opts
-    mapped_params
+    options.to_h
   end
 
   def options_with_properties(options)
