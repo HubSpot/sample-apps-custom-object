@@ -2,7 +2,7 @@
 
 ### Requirements
 
-1. ruby 2.6.3
+1. ruby 3.1.3
 2. [Configured](https://github.com/HubSpot/sample-apps-manage-crm-objects/blob/main/README.md#how-to-run-locally) .env file
 
 ### Running
@@ -56,15 +56,14 @@ ruby cli.rb -a schema -m create -p '{
     {                     
       "name": "my_object_property",
       "label": "My object property",
-      "is_primary_display_label": true,
-      "field_type": "text"
+      "isPrimaryDisplayLabel": true
     }             
   ],
   "associated_objects": [
     "CONTACT"
   ],
   "name": "my_object",
-  "primary_display_property": "my_object_property"
+  "primaryDisplayProperty": "my_object_property"
 }'
 ```
 
@@ -106,7 +105,7 @@ ruby cli.rb -a object -m get_by_id -t [schema_id] -i [object_id]
 Create new object
 
 ```
-ruby cli.rb -m create -t [schema_id] -p [params]
+ruby cli.rb -a object -m create -t [schema_id] -p [params]
 ```
 
 Params is a json, example:
@@ -130,5 +129,5 @@ Params is a json, example:
 Delete an object
 
 ```
-ruby cli.rb -m archive -t [schema_id] -i [object_id]
+ruby cli.rb -a object -m archive -t [schema_id] -i [object_id]
 ```
