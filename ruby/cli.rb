@@ -60,9 +60,9 @@ class Cli
     return options if options[:properties].nil? || options[:api].nil? || options[:method].nil?
 
     properties = options[:properties]
-    options[:simple_public_object_input] = Hubspot::Crm::Objects::SimplePublicObjectInput.new(properties: properties) if options[:api] == 'object'
-    options[:object_schema_egg] = Hubspot::Crm::Schemas::ObjectSchemaEgg.new(properties) if options[:api] == 'schema' && options[:method] == 'create'
-    options[:object_type_definition_patch] = Hubspot::Crm::Schemas::ObjectTypeDefinitionPatch.new(properties) if options[:api] == 'schema' && options[:method] == 'update'
+    options[:simple_public_object_input] = { properties: properties } if options[:api] == 'object'
+    options[:object_schema_egg] = properties if options[:api] == 'schema' && options[:method] == 'create'
+    options[:object_type_definition_patch] = properties if options[:api] == 'schema' && options[:method] == 'update'
     options
   end
 end
