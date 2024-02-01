@@ -129,9 +129,10 @@ const getProperties = async ({ objectType }) => {
     logger.log(
       'Calling crm.properties.coreApi.getAll API method. Retrieve all contacts properties'
     );
-    const propertiesResponse = await hubspotClient.crm.properties.coreApi.getAll(
-      convertToObjectTypeId(objectType)
-    );
+    const propertiesResponse =
+      await hubspotClient.crm.properties.coreApi.getAll(
+        convertToObjectTypeId(objectType)
+      );
     logResponse(propertiesResponse);
 
     return propertiesResponse.results;
