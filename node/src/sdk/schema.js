@@ -54,9 +54,8 @@ const createSchema = async (schema) => {
     logger.log(
       `Calling crm.schemas.coreApi.create API method. Create new schema`
     );
-    const createResponse = await hubspotClient.crm.schemas.coreApi.create(
-      schema
-    );
+    const createResponse =
+      await hubspotClient.crm.schemas.coreApi.create(schema);
     logResponse(createResponse);
 
     const schemaId = _.get(createResponse, 'id');

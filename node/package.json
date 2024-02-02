@@ -24,10 +24,10 @@
     "inquirer": "^7.3.3",
     "lodash": "^4.17.21",
     "pluralize": "^8.0.0",
-    "yargs": "^16.2.0"
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "nodemon": "^3.0",
-    "prettier": "^2.2.1"
+    "prettier": "^3.2.4"
   }
 }
