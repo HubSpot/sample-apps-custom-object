@@ -1,11 +1,11 @@
 # HubSpot-php custom object sample app
 
-### Requirements
+## Requirements
 
 1. php >=7.2.5
 2. [Configured](https://github.com/HubSpot/sample-apps-manage-crm-objects/blob/main/README.md#how-to-run-locally) .env file
 
-### Running
+## Running
 
 1. Install dependencies
 
@@ -18,7 +18,7 @@ composer i
 If .env config file was not configured manually there is a way to initialize the CLI and create .env file via:
 
 ```bash
-./bin/cli.php app:init 
+./bin/cli.php app:init
 ```
 
 It will ask for your Hubspot Api Key and will save it to the new .env config file.
@@ -31,7 +31,7 @@ Show all commands
 ./bin/cli.php
 ```
 
-##Schemas
+## Schemas
 
 Get list of available schemas
 
@@ -45,7 +45,7 @@ Get schema by Id
 ./bin/cli.php schemas:get --schemaId=<schemaId>
 ```
 
-Create a new schema 
+Create a new schema
 
 ```bash
 ./bin/cli.php schemas:create
@@ -57,13 +57,19 @@ Update existing schema
 ./bin/cli.php schemas:update <schemaId>
 ```
 
+> [!NOTE]
+> Please note that it’s possible to update only a singular label for a schema via `schemas:update`.
+
 Delete existing schema
 
 ```bash
 ./bin/cli.php schemas:delete <schemaId>
 ```
 
-##Objects
+> [!NOTE]
+> Please note that object shema cannot be deleted until all object records are deleted.
+
+## Objects
 
 Get list of objects from schema
 
@@ -77,10 +83,10 @@ Get object from schema by Id
 ./bin/cli.php objects:get <schemaId> --id=<objectId>
 ```
 
-Create a new object 
+Create a new object
 
 ```bash
-./bin/cli.php objects:create <schemaId> name=Brian age=25   
+./bin/cli.php objects:create <schemaId> name=Brian age=25
 ```
 
 Update existing object
