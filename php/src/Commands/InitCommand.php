@@ -11,7 +11,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 #[AsCommand(name: 'app:init')]
 class InitCommand extends Command
 {
-
     protected $envFileName = __DIR__.'/../../.env';
 
     protected function configure()

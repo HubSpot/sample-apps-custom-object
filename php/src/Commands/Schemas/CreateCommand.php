@@ -18,7 +18,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 #[AsCommand(name: 'schemas:create')]
 class CreateCommand extends Command
 {
-
     protected $types = [
         'enumeration' => ['booleancheckbox', 'checkbox', 'radio', 'select'],
         'date' => ['date'],

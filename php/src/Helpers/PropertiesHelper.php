@@ -4,7 +4,7 @@ namespace Helpers;
 
 class PropertiesHelper
 {
-    const KEY_VALUE_COUNT = 2;
+    public const KEY_VALUE_COUNT = 2;
 
     public static function parseProperties(array $elements): array
     {
