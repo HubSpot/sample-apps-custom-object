@@ -4,6 +4,7 @@ namespace Commands\Objects;
 
 use Helpers\HubspotClientHelper;
 use Helpers\SchemaIdConverter;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -11,10 +12,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Traits\SchemaIdCommandArgument;
 
+#[AsCommand(name: 'objects:get')]
 class GetCommand extends Command
 {
     use SchemaIdCommandArgument;
-    protected static $defaultName = 'objects:get';
 
     protected function configure()
     {

@@ -6,15 +6,16 @@ use Helpers\HubspotClientHelper;
 use Helpers\SchemaIdConverter;
 use HubSpot\Client\Crm\Schemas\Model\ObjectSchema;
 use HubSpot\Client\Crm\Schemas\ObjectSerializer;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+#[AsCommand(name: 'schemas:get')]
 class GetCommand extends Command
 {
-    protected static $defaultName = 'schemas:get';
 
     protected function configure()
     {

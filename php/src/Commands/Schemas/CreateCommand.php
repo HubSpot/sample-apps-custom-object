@@ -9,14 +9,15 @@ use HubSpot\Client\Crm\Schemas\Model\ObjectSchemaEgg;
 use HubSpot\Client\Crm\Schemas\Model\ObjectTypeDefinitionLabels;
 use HubSpot\Client\Crm\Schemas\Model\ObjectTypePropertyCreate;
 use HubSpot\Client\Crm\Schemas\Model\OptionInput;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+#[AsCommand(name: 'schemas:create')]
 class CreateCommand extends Command
 {
-    protected static $defaultName = 'schemas:create';
 
     protected $types = [
         'enumeration' => ['booleancheckbox', 'checkbox', 'radio', 'select'],
