@@ -2,7 +2,7 @@
 
 ## Requirements
 
-1. php >=7.2.5
+1. php >=7.4.0
 2. [Configured](https://github.com/HubSpot/sample-apps-manage-crm-objects/blob/main/README.md#how-to-run-locally) .env file
 
 ## Running
