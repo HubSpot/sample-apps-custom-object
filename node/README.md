@@ -55,6 +55,7 @@ Update existing schema or object instance
 ```bash
 ./bin/cli.js update <schema|object> [schemaId] [objectId] --property1='New property value'
 ./bin/cli.js update schema 23164357 --requiredProperties='name,age'
+./bin/cli.js update object 23164357 11980985487 --age=41
 ```
 
 > [!NOTE]
@@ -64,7 +65,12 @@ Delete existing schema or object instance
 
 ```bash
 ./bin/cli.js delete <schema|object> [schemaId] [objectId]
+./bin/cli.js get object 23164357 11980985487
+./bin/cli.js delete schema 7895273
 ```
+
+> [!NOTE]
+> Please note that object shema cannot be deleted until all object records are deleted.
 
 Get list of available properties for a schema
 
