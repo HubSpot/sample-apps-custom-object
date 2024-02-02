@@ -16,7 +16,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 #[AsCommand(name: 'schemas:get')]
 class GetCommand extends Command
 {
-
     protected function configure()
     {
         $this->setDescription('Get CRM schema.');
