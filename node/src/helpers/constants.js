@@ -20,14 +20,11 @@ const UPDATE_SCHEMA_ARRAY_PROPERTIES = [
   'secondaryDisplayProperties',
 ];
 
-const API_KEY_REGEX = /^([a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12})$/i;
-
 const STRING_WITH_NO_SPACES_REGEX = /^\S*$/;
 
 module.exports = {
   AVAILABLE_SCHEMA_TYPES,
   AVAILABLE_SCHEMA_FIELD_TYPES,
-  API_KEY_REGEX,
   STRING_WITH_NO_SPACES_REGEX,
   UPDATE_SCHEMA_ARRAY_PROPERTIES,
 };

@@ -30,6 +30,7 @@ Show all commands
 ```bash
 ./bin/cli.js --help
 ```
+
 Get list of available schemas or object instances of the schema
 
 ```bash
@@ -42,7 +43,9 @@ Create a new schema or object instance
 ./bin/cli.js create <schema|object> [schemaId]
 ```
 
-Please also notice when you create object instance, some of them require mandatory properties, that you can provide in the following way:
+> [!NOTE]
+> Please notice when you create object instance, some of them require mandatory properties, that you can provide in the following way:
+
 ```bash
 ./bin/cli.js create object [schemaId] --email='Brian.Halligan@test.com' --firstname='Brian' --lastname='Halligan'
 ```
@@ -50,8 +53,12 @@ Please also notice when you create object instance, some of them require mandato
 Update existing schema or object instance
 
 ```bash
-./bin/cli.js udpate <schema|object> [schemaId] [objectId] --property1='New property value'
+./bin/cli.js update <schema|object> [schemaId] [objectId] --property1='New property value'
+./bin/cli.js update schema 23164357 --requiredProperties='name,age'
 ```
+
+> [!NOTE]
+> Please note that it’s possible to update only `requiredProperties`, `searchableProperties` and `secondaryDisplayProperties` via `update schema`.
 
 Delete existing schema or object instance
 
@@ -60,6 +67,7 @@ Delete existing schema or object instance
 ```
 
 Get list of available properties for a schema
+
 ```bash
 ./bin/cli.js properties [schemaId]
 ```
