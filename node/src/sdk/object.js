@@ -95,15 +95,13 @@ const getObject = async ({ objectId, objectType }) => {
     logger.log(
       `Calling crm.properties.coreApi.getAll API method. Retrieve all ${objectType} properties`
     );
-    const propertiesResponse = await hubspotClient.crm.properties.coreApi.getAll(
-      convertToObjectTypeId(objectType)
-    );
+    const propertiesResponse =
+      await hubspotClient.crm.properties.coreApi.getAll(
+        convertToObjectTypeId(objectType)
+      );
     logResponse(propertiesResponse);
 
-    const objectPropertiesNames = _.map(
-      propertiesResponse.results,
-      'name'
-    );
+    const objectPropertiesNames = _.map(propertiesResponse.results, 'name');
 
     // Get object identified by objectId and objectType
     // GET /crm/v3/objects/{objectType}/{objectId}
