@@ -4,17 +4,17 @@ namespace Commands\Schemas;
 
 use Helpers\HubspotClientHelper;
 use Helpers\SchemaIdConverter;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Traits\SchemaIdCommandArgument;
 
+#[AsCommand(name: 'schemas:delete')]
 class DeleteCommand extends Command
 {
     use SchemaIdCommandArgument;
-
-    protected static $defaultName = 'schemas:delete';
 
     protected function configure(): void
     {

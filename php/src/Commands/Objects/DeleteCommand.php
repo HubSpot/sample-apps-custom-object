@@ -4,6 +4,7 @@ namespace Commands\Objects;
 
 use Helpers\HubspotClientHelper;
 use Helpers\SchemaIdConverter;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -11,12 +12,11 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Traits\ObjectIdCommandArgument;
 use Traits\SchemaIdCommandArgument;
 
+#[AsCommand(name: 'objects:delete')]
 class DeleteCommand extends Command
 {
     use ObjectIdCommandArgument;
     use SchemaIdCommandArgument;
-
-    protected static $defaultName = 'objects:delete';
 
     protected function configure()
     {

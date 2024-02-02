@@ -6,6 +6,7 @@ use Helpers\HubspotClientHelper;
 use Helpers\PropertiesHelper;
 use Helpers\SchemaIdConverter;
 use HubSpot\Client\Crm\Objects\Model\SimplePublicObjectInput;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -14,13 +15,12 @@ use Traits\ObjectIdCommandArgument;
 use Traits\PropertiesCommandArgument;
 use Traits\SchemaIdCommandArgument;
 
+#[AsCommand(name: 'objects:update')]
 class UpdateCommand extends Command
 {
     use ObjectIdCommandArgument;
     use SchemaIdCommandArgument;
     use PropertiesCommandArgument;
-
-    protected static $defaultName = 'objects:update';
 
     protected function configure()
     {
